@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>k1.jpg</file>
+        <file>k2.jpg</file>
+        <file>k3.jpg</file>
+        <file>k4.jfif</file>
+        <file>k5.jpg</file>
+    </qresource>
+    <qresource prefix="/new/prefix2"/>
+</RCC>
