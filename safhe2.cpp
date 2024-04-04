@@ -66,8 +66,19 @@ void safhe2::on_pushButton2_clicked()
 
 void safhe2::on_pushButton1_clicked()
 {
-    safhe3 *w3=new safhe3;
-    w3->show();
+    QSqlQuery l;
+    QString l1;
+    l1=ui->lineEdit1->text();
+    l.exec("SELECT name FROM daneshjo WHERE name='"+l1+"'");
+    if(l.first())
+    {
+        safhe3 *w3=new safhe3;
+        w3->show();
+    }
+    else
+    {
+         QMessageBox::warning(this,"اخطار","این نام کاربری وجود ندارد","تایید");
+    }
 }
 
 
@@ -77,7 +88,14 @@ void safhe2::on_pushButton3_clicked()
     QString s1,s2;
     s1=ui->lineEdit1->text();
     s2=ui->lineEdit2->text();
-    q.exec("INSERT INTO daneshjo(name,pass)VALUES('"+s1+"','"+s2+"')");
+    q.exec("SELECT name FROM daneshjo WHERE name='"+s1+"'");
+    if(q.first())
+    {
+        QMessageBox::warning(this,"اخطار","این نام کاربری قبلا ثبت شده.لطفا نام جدیدی انتخاب کنید","تایید");
+    }
+   else
+    {
+         q.exec("INSERT INTO daneshjo(name,pass)VALUES('"+s1+"','"+s2+"')");
 
     if(r==0)
     {
@@ -139,7 +157,7 @@ void safhe2::on_pushButton3_clicked()
              QMessageBox::warning(this,"اخطار","لطفا کد امنیتی را به درستی وارد کنید","تایید");
         }
     }
-
+    }
 }
 
 
